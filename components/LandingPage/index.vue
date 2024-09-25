@@ -1,0 +1,5 @@
+<template>
+    <LandingPageCarousel />
+       
+  
+</template>
