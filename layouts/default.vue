@@ -29,7 +29,7 @@
         </NuxtLink>
         <NuxtLink 
           class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-          to="/choose-nurse" 
+          to="/yourNurse" 
           active-class="bg-cyan-700 text-yellow-400" 
           exact-active-class="bg-cyan-700 text-yellow-400"
         >
@@ -69,7 +69,7 @@
           </NuxtLink>
           <NuxtLink 
             class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-            to="/choose-nurse" 
+            to="/yourNurse" 
             active-class="bg-cyan-700 text-yellow-400" 
             exact-active-class="bg-cyan-700 text-yellow-400"
           >
