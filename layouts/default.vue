@@ -7,7 +7,7 @@
           name="iconamoon:menu-burger-horizontal"
           class="md:hidden text-xl text-white cursor-pointer"
         />
-        <span class="text-2xl font-bold ml-2 bg-cyan-700 text-yellow-400 px-4 py-2 rounded-xl">Your Nurse</span>
+        <span class="text-2xl font-bold ml-2 bg-cyan-700 text-yellow-400 px-4 py-2 rounded-xl flex justify-center items-center">Your Nurse</span>
       </div>
 
       <div class="links md:flex items-center gap-4 hidden">
