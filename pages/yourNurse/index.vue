@@ -33,21 +33,8 @@
                 </template>
             </Column> -->
             
-           
-             <!-- عمود المنطقة -->
-             <Column class="text-start w-fit" header="المنطقة" filterField="country.name" style="min-width: 12rem">
-                <template #body="{ data }">
-                    <div class="flex items-center gap-2">
-                        <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${data.country.code}`" style="width: 24px" />
-                        <span>{{ data.country.name }}</span>
-                    </div>
-                </template>
-                <template #filter="{ filterModel, filterCallback }">
-                    <InputText class="region"  v-model="filterModel.value" type="text" @input="filterCallback()" placeholder="بحث بالمنطقة" />
-                </template>
-            </Column>
-            <!-- عمود الممرض -->
-            <Column class="text-start" header="الممرض" filterField="representative" :showFilterMenu="false" style="min-width: 14rem">
+           <!-- عمود الممرض -->
+           <Column class="text-start" header="الممرض" filterField="representative" :showFilterMenu="false" style="min-width: 14rem">
                 <template #body="{ data }">
                     <div class="flex items-center gap-2 cursor-pointer hover:text-cyan-400 delayed" @click="goToNurse(data.representative.id)">
                         <img :alt="data.representative.name" :src="`${data.representative.image}`" class="w-24 h-24 " style="border-radius: 50%;"  />
@@ -65,6 +52,19 @@
                     </MultiSelect>
                 </template>
             </Column>
+             <!-- عمود المنطقة -->
+             <Column class="text-start w-fit" header="المنطقة" filterField="country.name" style="min-width: 12rem">
+                <template #body="{ data }">
+                    <div class="flex items-center gap-2">
+                        <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${data.country.code}`" style="width: 24px" />
+                        <span>{{ data.country.name }}</span>
+                    </div>
+                </template>
+                <template #filter="{ filterModel, filterCallback }">
+                    <InputText class="region"  v-model="filterModel.value" type="text" @input="filterCallback()" placeholder="بحث بالمنطقة" />
+                </template>
+            </Column>
+            
             
         </DataTable>
     </div>

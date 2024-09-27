@@ -7,7 +7,7 @@
           name="iconamoon:menu-burger-horizontal"
           class="md:hidden text-xl text-white cursor-pointer"
         />
-        <img src="/public/imgs/logo.jpeg" class=" w-16 h-16" alt="" style="border-radius: 50%;">
+        <img src="/public/imgs/logo.jpeg" class=" w-16 h-16 cursor-pointer" alt="" style="border-radius: 50%;" @click="navigateTo('/')">
       </div>
 
       <div class="links md:flex items-center gap-4 hidden">
@@ -28,10 +28,9 @@
           من نحن؟
         </NuxtLink>
         <NuxtLink 
-          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-          to="/yourNurse" 
-          active-class="bg-cyan-700 text-yellow-400" 
-          exact-active-class="bg-cyan-700 text-yellow-400"
+          :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
+                   { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" 
+          to="/yourNurse"
         >
           اختر ممرضك
         </NuxtLink>
@@ -68,10 +67,9 @@
             من نحن؟
           </NuxtLink>
           <NuxtLink 
-            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-            to="/yourNurse" 
-            active-class="bg-cyan-700 text-yellow-400" 
-            exact-active-class="bg-cyan-700 text-yellow-400"
+            :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
+                     { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" 
+            to="/yourNurse"
           >
             اختر ممرضك
           </NuxtLink>
@@ -94,12 +92,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 const isSidebarOpen = ref(false);
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value;
 }
+
+const route = useRoute();
+const isYourNurseActive = computed(() => {
+  return route.path.startsWith('/yourNurse');
+});
 </script>
 
 <style scoped>
