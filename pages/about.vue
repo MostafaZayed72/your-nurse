@@ -23,8 +23,8 @@
           <InputText v-model="region" id="region" required />
         </div>
         <div class="field">
-          <label for="image">رابط الصورة:</label>
-          <InputText v-model="image" id="image" required />
+          <label for="image">اختر صورة:</label>
+          <input type="file" @change="onFileChange" required />
         </div>
         <Button label="تسجيل" icon="pi pi-check" type="submit" />
       </form>
@@ -44,44 +44,67 @@
   const whatsapp = ref('');
   const email = ref('');
   const region = ref('');
-  const image = ref('');
+  const imageUrl = ref(''); // هذا سيحتوي على رابط الصورة
   const router = useRouter();
   const toast = ref(null);
   
+  const onFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // رفع الصورة إلى Cloudinary
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'YOUR_UPLOAD_PRESET'); // تأكد من استبدالها بالإعداد الخاص بك
+  
+      try {
+        const response = await fetch('https://api.cloudinary.com/v1_1/dzswjhtds/image/upload', {
+          method: 'POST',
+          body: formData,
+        });
+  
+        const data = await response.json();
+        imageUrl.value = data.secure_url; // احصل على الرابط الآمن للصورة
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        toast.value.add({ severity: 'error', summary: 'خطأ', detail: 'فشل رفع الصورة.' });
+      }
+    }
+  };
+  
   const submitForm = async () => {
     console.log('Values being sent:', {
-      name: name.value, 
-      mobile: mobile.value, 
+      name: name.value,
+      mobile: mobile.value,
       whatsapp: whatsapp.value,
       email: email.value,
       region: region.value,
-      image: image.value
+      image: imageUrl.value, // استخدم الرابط الذي حصلنا عليه
     });
-
+  
     const response = await fetch('/api/nurses', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-            name: name.value, 
-            mobile: mobile.value, 
-            whatsapp: whatsapp.value,
-            email: email.value,
-            region: region.value,
-            image: image.value
-        }),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name.value,
+        mobile: mobile.value,
+        whatsapp: whatsapp.value,
+        email: email.value,
+        region: region.value,
+        image: imageUrl.value, // استخدم الرابط الآمن للصورة
+      }),
     });
   
     if (response.ok) {
-        toast.value.add({ severity: 'success', summary: 'نجاح', detail: 'تم التسجيل بنجاح!' });
-        setTimeout(() => {
-            router.push('/yourNurse'); // التوجيه إلى صفحة عرض الممرضين
-        }, 2000);
+      toast.value.add({ severity: 'success', summary: 'نجاح', detail: 'تم التسجيل بنجاح!' });
+      setTimeout(() => {
+        router.push('/yourNurse'); // التوجيه إلى صفحة عرض الممرضين
+      }, 2000);
     } else {
-        toast.value.add({ severity: 'error', summary: 'خطأ', detail: 'فشل التسجيل. حاول مرة أخرى.' });
+      toast.value.add({ severity: 'error', summary: 'خطأ', detail: 'فشل التسجيل. حاول مرة أخرى.' });
     }
-};
+  };
   </script>
   
   <style scoped>
