@@ -1,0 +1,18 @@
+datasource db {
+  provider = "sqlite" // يمكنك اختيار قاعدة بيانات أخرى مثل PostgreSQL أو MySQL
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Nurse {
+  id       Int     @id @default(autoincrement())
+  name     String  // اسم الممرض
+  mobile   String  // رقم الموبايل
+  whatsapp String? // رقم الواتساب (اختياري)
+  email    String? // الإيميل (اختياري)
+  region   String? // المنطقة (اختياري)
+  image    String? // رابط الصورة (اختياري)
+}

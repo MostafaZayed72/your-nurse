@@ -15,8 +15,8 @@
         <template #content>
           <div class="flex flex-col md:flex-row mt-2 md:justify-between items-center gap-6">
             <div class="flex gap-2">
-              <Icon name="logos:whatsapp-icon" class="text-3xl" />
-              <Icon name="material-symbols:phone-enabled" class="text-3xl" color="blue" />
+              <Icon name="logos:whatsapp-icon" class="text-3xl cursor-pointer"  />
+              <Icon name="material-symbols:phone-enabled" class="text-3xl cursor-pointer" color="blue"  />
             </div>
 
             <!-- تقييم النجوم باستخدام Vuetify -->
