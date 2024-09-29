@@ -7,7 +7,7 @@
     "dev": "nuxt dev",
     "generate": "prisma generate && nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "postinstall": "prisma generate && nuxt prepare",
     "start": "prisma generate && node server.js"
   },
   "dependencies": {
