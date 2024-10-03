@@ -5,10 +5,10 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "prisma generate && nuxt generate",
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "prisma generate && nuxt prepare",
-    "start": "prisma generate && node server.js"
+    "postinstall": "nuxt prepare",
+    "start": "node server.js"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.9.2",
