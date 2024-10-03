@@ -32,7 +32,7 @@
           <Toast ref="toast" class="pl-16 pl-md-0" style="direction: rtl" />
   
           <div v-if="loading" class="spinner-overlay">
-              <ProgressSpinner style="width: 50px; height: 50px;" />
+              <Loader style="width: 50px; height: 50px;" />
           </div>
       </div>
     </div>
@@ -43,7 +43,6 @@
   import InputText from 'primevue/inputtext'
   import Dropdown from 'primevue/dropdown'
   import Button from 'primevue/button'
-  import ProgressSpinner from 'primevue/progressspinner'
   import Toast from 'primevue/toast';
   import axios from 'axios'
   

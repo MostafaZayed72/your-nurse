@@ -2,7 +2,7 @@
     <div class="card p-4">
         <!-- Progress Spinner -->
         <div v-if="loading" class="progress-spinner-overlay mx-auto flex justify-center w-full h-screen">
-            <ProgressSpinner class="my-auto" />
+            <Loader class="my-auto" />
         </div>
 
         <DataTable v-else v-model:filters="filters" :value="customers" paginator showGridlines :rows="10" dataKey="id"
@@ -87,7 +87,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api';
-import ProgressSpinner from 'primevue/progressspinner'; // Import ProgressSpinner
 import { RouterLink } from 'vue-router'; // Import RouterLink
 
 const customers = ref([]);

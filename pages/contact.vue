@@ -2,7 +2,7 @@
     <div class="card relative">
         <!-- Spinner يظهر أثناء تحميل البيانات -->
         <div v-if="loading" class="fixed inset-0 flex items-center justify-center z-10">
-            <ProgressSpinner />
+            <Loader />
         </div>
 
         <!-- DataTable -->
@@ -124,7 +124,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import ProgressSpinner from 'primevue/progressspinner';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';

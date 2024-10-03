@@ -136,7 +136,7 @@
         </div>
       </div>
     </transition>
-
+    <Loader v-if="loading" />
     <main class="p-0">
       <slot />
     </main>
@@ -146,7 +146,23 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
+const loading = ref(true);
+const router = useRouter();
 
+// التحكم في حالة الـ loading عند التنقل بين الصفحات
+router.beforeEach((to, from, next) => {
+  loading.value = true;
+  next();
+});
+
+router.afterEach(() => {
+  loading.value = false;
+});
+
+// عند تحميل الصفحة لأول مرة
+onMounted(() => {
+  loading.value = false;
+});
 const isSidebarOpen = ref(false);
 const isDropdownOpen = ref(false);
 

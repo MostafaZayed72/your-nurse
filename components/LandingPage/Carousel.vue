@@ -50,13 +50,12 @@
         </v-carousel-item>
       </v-carousel>
   
-      <ProgressSpinner v-else class="mt-10" />
+      <Loader v-else class="mt-10" />
     </v-container>
   </template>
   
   <script setup>
   import { ref, onMounted } from 'vue';
-  import ProgressSpinner from 'primevue/progressspinner';
   
   // تعريف مصفوفة الشرائح
   const slides = ref([
