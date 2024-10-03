@@ -23,7 +23,7 @@
 }
 
 .dark .loader {
-  background-color: black
+  background-color: rgba(0, 0, 0, 0.63)
 }
 
 .spinner {
