@@ -29,7 +29,7 @@
               <Button label="تسجيل" type="submit" class="w-full bg-blue-darken-4" :disabled="loading" />
           </form>
   
-          <Toast ref="toast" class="pl-16 pl-md-0" style="direction: rtl" />
+          <Toast class="pl-16 pl-md-0" style="direction: rtl" />
   
           <div v-if="loading" class="spinner-overlay">
               <Loader style="width: 50px; height: 50px;" />

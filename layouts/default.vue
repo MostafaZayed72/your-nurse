@@ -53,15 +53,15 @@
           >
             تسجيل حساب جديد
           </button>
-          <div v-if="isDropdownOpen" class="absolute bg-white text-black shadow-lg rounded mt-2 w-48 right-0 z-10">
+          <div v-if="isDropdownOpen" class="absolute bg-cyan-700 p-4 gap-2 flex flex-col  shadow-lg rounded mt-2 w-48 right-0 z-10">
             <NuxtLink 
-              :class="['block px-4 py-2 hover:bg-gray-100', { 'bg-cyan-700 text-yellow-400': isSignupActive }]"
+              class="hover:text-yellow-400 delayed"
               to="/nurses/signup"
             >
               سجل كممرض
             </NuxtLink>
             <NuxtLink 
-              :class="['block px-4 py-2 hover:bg-gray-100', { 'bg-cyan-700 text-yellow-400': isSignupActive }]"
+              class="hover:text-yellow-400 delayed"
               to="/users/signup"
             >
               سجل كمستخدم عادي
@@ -118,15 +118,13 @@
             >
               تسجيل حساب جديد
             </button>
-            <div v-if="isDropdownOpen" class="bg-white text-black shadow-lg rounded mt-2 w-full z-10">
+            <div v-if="isDropdownOpen" class="bg-cyan-700 shadow-lg rounded mt-2 w-fit p-2 z-10 flex flex-col gap-2">
               <NuxtLink 
-                
                 to="/nurses/signup"
               >
                 سجل كممرض
               </NuxtLink>
               <NuxtLink 
-          
                 to="/users/signup"
               >
                 سجل كمستخدم عادي
@@ -136,6 +134,7 @@
         </div>
       </div>
     </transition>
+    
     <Loader v-if="loading" />
     <main class="p-0">
       <slot />
@@ -144,8 +143,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
 const loading = ref(true);
 const router = useRouter();
 
@@ -163,6 +163,7 @@ router.afterEach(() => {
 onMounted(() => {
   loading.value = false;
 });
+
 const isSidebarOpen = ref(false);
 const isDropdownOpen = ref(false);
 
@@ -173,6 +174,23 @@ const toggleSidebar = () => {
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 }
+
+// إغلاق القائمة عند النقر خارجها
+const closeDropdownOnClickOutside = (event) => {
+  const dropdown = document.querySelector('.relative'); // عنصر القائمة
+  if (dropdown && !dropdown.contains(event.target)) {
+    isDropdownOpen.value = false;
+  }
+};
+
+// إضافة وإزالة مستمع للنقر عند تشغيل وإيقاف المكون
+onMounted(() => {
+  document.addEventListener('click', closeDropdownOnClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', closeDropdownOnClickOutside);
+});
 
 const route = useRoute();
 
