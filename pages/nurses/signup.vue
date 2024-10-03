@@ -45,7 +45,8 @@
   import Button from 'primevue/button'
   import Toast from 'primevue/toast';
   import axios from 'axios'
-  
+  import { useToast } from 'primevue/usetoast'; // استدعاء صحيح
+
   const toast = useToast();
   const firstName = ref('');
   const lastName = ref('');
