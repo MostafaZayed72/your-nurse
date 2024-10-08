@@ -3,6 +3,7 @@
     <div>
         <LandingPageHeader />
     <LandingPageCarousel />
+    <LandingPageTopNurses />
     </div>
        
   

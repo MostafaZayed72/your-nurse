@@ -96,11 +96,11 @@ const representatives = ref([{ name: 'محمد المصري', image: 'https://en
  { name: 'محمود حسان', image: 'https://img.youm7.com/ArticleImgs/2020/4/13/69680-200409141245-nurse-last-words-coronavirus-patient.jpg' },
  { name: 'خالد الشناوي', image: 'https://www.deutschland.de/sites/default/files/styles/image_carousel_mobile/public/media/image/male-nurse-steffen-roesel-hospital-job-Everyday-life-in-Germany-station.jpg?itok=IEQEA4y2' }, 
 { name: 'هشام عبد الله', image: 'https://hymc.org.il/_uploads/extraimg/babet(1).jpg' },
- { name: 'سارة عمر', image: 'https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-friendly-hijab-nurse-flat-png-image_11952365.png' }, 
- { name: 'نورا المصري', image: 'https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-friendly-hijab-nurse-flat-png-image_11952364.png' }, 
+ { name: 'سارة عمر', image: 'https://images.akhbarelyom.com//images/images/medium/20190909143445305.jpg' }, 
+ { name: 'نورا المصري', image: 'https://images.akhbarelyom.com//images/images/medium/20190909143445305.jpg' }, 
  { name: 'ياسر النجار', image: 'https://png.pngtree.com/background/20230919/original/pngtree-attractive-male-nurse-surgical-nurse-man-photo-picture-image_5142061.jpg' },
   { name: 'إسلام سامي', image: 'https://img.freepik.com/premium-photo/male-nurse-isolated-white_53419-2889.jpg' },
-  { name: 'آية حسين', image: 'https://png.pngtree.com/png-clipart/20221231/original/pngtree-illustration-of-a-smiling-muslimah-doctor-with-a-stethoscope-png-image_8836825.png' }]);
+  { name: 'آية حسين', image: 'https://images.akhbarelyom.com//images/images/medium/20190909143445305.jpg' }]);
 const loading = ref(true); // Add loading state
 
 onMounted(() => {
@@ -134,11 +134,11 @@ const getCustomers = () => {
         { id: 3, name: 'محمود حسان', country: { name: 'الحضرة', code: 'eg' }, representative: { name: 'محمود حسان', image: 'https://img.youm7.com/ArticleImgs/2020/4/13/69680-200409141245-nurse-last-words-coronavirus-patient.jpg' }, contact: { phone: '01234567892', whatsapp: '01123456791' }, rating: 3 },
         { id: 4, name: 'خالد الشناوي', country: { name: 'العوايد', code: 'eg' }, representative: { name: 'خالد الشناوي', image: 'https://www.deutschland.de/sites/default/files/styles/image_carousel_mobile/public/media/image/male-nurse-steffen-roesel-hospital-job-Everyday-life-in-Germany-station.jpg?itok=IEQEA4y2' }, contact: { phone: '01234567893', whatsapp: '01123456792' }, rating: 2 },
         { id: 5, name: 'هشام عبد الله', country: { name: 'البيطاش', code: 'eg' }, representative: { name: 'هشام عبد الله', image: 'https://hymc.org.il/_uploads/extraimg/babet(1).jpg' }, contact: { phone: '01234567894', whatsapp: '01123456793' }, rating: 1 },
-        { id: 6, name: 'سارة عمر', country: { name: 'الكيلو 21', code: 'eg' }, representative: { name: 'سارة عمر', image: 'https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-friendly-hijab-nurse-flat-png-image_11952365.png' }, contact: { phone: '01234567895', whatsapp: '01123456794' }, rating: 5 },
-        { id: 7, name: 'نورا المصري', country: { name: 'المندرة', code: 'eg' }, representative: { name: 'نورا المصري', image: 'https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-friendly-hijab-nurse-flat-png-image_11952364.png' }, contact: { phone: '01234567896', whatsapp: '01123456795' }, rating: 4 },
+        { id: 6, name: 'سارة عمر', country: { name: 'الكيلو 21', code: 'eg' }, representative: { name: 'سارة عمر', image: 'https://images.akhbarelyom.com//images/images/medium/20190909143445305.jpg' }, contact: { phone: '01234567895', whatsapp: '01123456794' }, rating: 5 },
+        { id: 7, name: 'نورا المصري', country: { name: 'المندرة', code: 'eg' }, representative: { name: 'نورا المصري', image: 'https://images.akhbarelyom.com//images/images/medium/20190909143445305.jpg' }, contact: { phone: '01234567896', whatsapp: '01123456795' }, rating: 4 },
         { id: 8, name: 'ياسر النجار', country: { name: 'سيدي بشر', code: 'eg' }, representative: { name: 'ياسر النجار', image: 'https://png.pngtree.com/background/20230919/original/pngtree-attractive-male-nurse-surgical-nurse-man-photo-picture-image_5142061.jpg' }, contact: { phone: '01234567897', whatsapp: '01123456796' }, rating: 3 },
         { id: 9, name: 'إسلام سامي', country: { name: 'العصافرة', code: 'eg' }, representative: { name: 'إسلام سامي', image: 'https://img.freepik.com/premium-photo/male-nurse-isolated-white_53419-2889.jpg' }, contact: { phone: '01234567898', whatsapp: '01123456797' }, rating: 2 },
-        { id: 10, name: 'آية حسين', country: { name: 'كرموز', code: 'eg' }, representative: { name: 'آية حسين', image: 'https://png.pngtree.com/png-clipart/20221231/original/pngtree-illustration-of-a-smiling-muslimah-doctor-with-a-stethoscope-png-image_8836825.png' }, contact: { phone: '01234567899', whatsapp: '01123456798' }, rating: 1 },
+        { id: 10, name: 'آية حسين', country: { name: 'كرموز', code: 'eg' }, representative: { name: 'آية حسين', image: 'https://images.akhbarelyom.com//images/images/medium/20190909143445305.jpg' }, contact: { phone: '01234567899', whatsapp: '01123456798' }, rating: 1 },
     ];
 };
 </script>

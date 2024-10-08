@@ -22,11 +22,12 @@
         </NuxtLink>
         <NuxtLink 
           class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-          to="/about" 
+          to="/Terms_and_Conditions" 
           active-class="bg-cyan-700 text-yellow-400" 
           exact-active-class="bg-cyan-700 text-yellow-400"
         >
-          من نحن؟
+        الشروط والأحكام
+
         </NuxtLink>
         <NuxtLink 
           :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
@@ -87,12 +88,12 @@
           </NuxtLink>
           <NuxtLink 
             class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-            to="/about" 
+            to="/Terms_and_Conditions" 
             active-class="bg-cyan-700 text-yellow-400" 
             exact-active-class="bg-cyan-700 text-yellow-400"
           >
-            من نحن؟
-          </NuxtLink>
+          الشروط والأحكام
+        </NuxtLink>
           <NuxtLink 
             :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
                      { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" 

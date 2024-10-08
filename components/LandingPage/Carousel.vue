@@ -41,9 +41,10 @@
             <div class="d-flex fill-height justify-center align-center">
               <!-- عرض الصورة -->
               <img
+              
                 :src="slide.image"
                 alt="Slider Image"
-                class="w-full h-full object-cover rounded-lg"
+                class="w-full h-full object-cover rounded-lg "
               />
             </div>
           </v-sheet>
@@ -61,7 +62,7 @@
   const slides = ref([
     {
       id: 1,
-      image: 'https://cdn.prod.website-files.com/63a1cbc81b0e903002cf9cec/642604b850060e114dc20476_I%27m%20Tired%20of%20Working%20with%20Patients-%20Now%20What%3F%208%20Non-Bedside%20Nursing%20Jobs%20to%20Consider%20.webp',
+      image: 'https://scontent.fcai19-8.fna.fbcdn.net/v/t39.30808-6/462537619_122110091732547089_7600453508252705657_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHOTxQ0URpjLw_YmnJMJ5AKHuYqSZ9XaSQe5ipJn1dpJNOkWO0sdRfzE0TNdAbEjAn4x_Q7Nu1BJIIgrxtjVJJm&_nc_ohc=aeNAbLunUQQQ7kNvgEHFv5F&_nc_ht=scontent.fcai19-8.fna&_nc_gid=A4Rv6rvMC4SUrJ7yF0hSsPE&oh=00_AYD3E4zstNb74rEEKASVoP6JUplIPplJt1dHkxNHj3PGOw&oe=670B3A39',
     },
     {
       id: 2,
