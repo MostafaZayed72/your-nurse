@@ -15,9 +15,16 @@ body {
    font-family: "Tajawal", sans-serif !important;
 }
 
+.v-data-table{
+  color: black !important;
+}
 .dark .v-data-table {
-    background-color: #5c5858; /* لون خلفية الصفوف الفردية */
-    color: white;  }
+    background-color: white;
+    color: white; 
+   }
+   .p-datatable-header{
+    background-color: #fcf9f9 !important;
+  }
   .dark .p-datatable-header{
     background-color: #5c5858 !important;
   }
@@ -30,6 +37,16 @@ body {
   color: white;
 }
 
+.p-datatable .p-datatable-tbody > tr:nth-child(odd){
+  color: black;
+}
+.p-datatable .p-datatable-tbody > tr:nth-child(even){
+  color: black;
+}
+
+.p-iconfield .p-inputtext:not(:first-child){
+  background-color: white;
+}
 .p-datatable .p-datatable-tbody > tr:nth-child(even) {
   background-color: #f8f5f5; /* لون خلفية الصفوف الزوجية */
 }

@@ -7,11 +7,11 @@
 
         <DataTable v-else v-model:filters="filters" :value="customers" paginator showGridlines :rows="10" dataKey="id"
             filterDisplay="menu"
-            :globalFilterFields="['name', 'country.name', 'representative.name', 'contact.phone', 'contact.whatsapp']">
+            :globalFilterFields="['name', 'country.name', 'representative.name', 'contact.phone', 'contact.whatsapp']" >
             <template #header>
                 <div class="flex justify-between">
                     <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined @click="clearFilter()" />
-                    <IconField>
+                    <IconField >
                         <InputIcon>
                             <i class="pi pi-search" />
                         </InputIcon>
@@ -23,7 +23,7 @@
             <template #loading> جاري تحميل بيانات العملاء. الرجاء الانتظار. </template>
 
             <!-- Column for nurses -->
-            <Column class="text-start" header="الممرض" filterField="representative.name" :showFilterMatchModes="false"
+            <Column class="text-start Column" header="الممرض" filterField="representative.name" :showFilterMatchModes="false"
                 :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
                 <template #body="{ data }">
                     <div class="flex items-center gap-2">
@@ -42,7 +42,7 @@
             </Column>
 
             <!-- Column for Country -->
-            <Column class="text-start" header="المنطقة" filterField="country.name" style="min-width: 12rem">
+            <Column class="text-start Column" header="المنطقة" filterField="country.name" style="min-width: 12rem">
                 <template #body="{ data }">
                     <div class="flex items-center gap-2">
                         <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
@@ -87,7 +87,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api';
-import { RouterLink } from 'vue-router'; // Import RouterLink
+import DataTable from 'primevue/datatable';
 
 const customers = ref([]);
 const filters = ref();
@@ -144,7 +144,10 @@ const getCustomers = () => {
 </script>
 
 <style scoped>
-/* Add styles for your components here */
+
+.dark .p-datatable-header{
+    background-color: #5c5858 !important;
+  }
 .star {
     font-size: 20px;
     color: #61615e; /* Gold color for filled stars */
