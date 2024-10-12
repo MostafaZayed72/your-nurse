@@ -1,11 +1,35 @@
 <template>
- <div style="direction: rtl;" >
-    <NuxtLayout >
-<NuxtPage />
-</NuxtLayout>
- </div>
-
+  <div :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr' }">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
+
+<script setup>
+import { ref, watch } from 'vue';
+import { useLocalStorage } from '@vueuse/core';
+import { useI18n } from 'vue-i18n';
+
+const { locale } = useI18n(); // استخدام useI18n للوصول إلى locale
+
+const preferredLanguage = useLocalStorage('preferredLanguage', 'en-US'); // القيمة الافتراضية يمكن أن تكون 'en-US'
+
+// استخدام watch لمراقبة تغييرات preferredLanguage
+watch(preferredLanguage, (newValue) => {
+  console.log('Language changed to:', newValue);
+  // تعيين اللغة في i18n
+  if (newValue) {
+    locale.value = newValue; // تعيين locale مباشرة
+  }
+});
+
+// تعيين اللغة الأولى عند التحميل
+if (!preferredLanguage.value) {
+  preferredLanguage.value = 'en-US'; // تعيين قيمة افتراضية إذا لم تكن موجودة
+}
+
+</script>
 
 <style>
 .delayed{

@@ -60,7 +60,7 @@ const nurse = ref({
 });
 
 // تقييم النجوم
-const rating = ref(4.5); // تقييم 4.5 من 5
+const rating = ref(2.9); // تقييم 4.5 من 5
 
 // بيانات الخدمات التي يقدمها الممرض
 const services = ref([

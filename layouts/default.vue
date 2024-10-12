@@ -1,6 +1,6 @@
 <template>
-  <div :class="{ 'dark': isDarkMode }">
-    <div class="mb-0 px-4 bg-cyan-500 flex justify-between items-center py-2 shadow-xl">
+  <div :class="{ 'dark': isDarkMode }" :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr' }">
+    <div class="mb-0 px-4 bg-cyan-500 flex justify-between items-center py-2 shadow-xl sticky top-0 z-10 ">
       <div class="flex items-center gap-4">
         <Icon
           @click="toggleSidebar"
@@ -18,7 +18,7 @@
           active-class="bg-cyan-700 text-yellow-400" 
           exact-active-class="bg-cyan-700 text-yellow-400"
         >
-          الرئيسية
+          {{ $t('Home') }}
         </NuxtLink>
         <NuxtLink 
           class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
@@ -26,23 +26,22 @@
           active-class="bg-cyan-700 text-yellow-400" 
           exact-active-class="bg-cyan-700 text-yellow-400"
         >
-        الشروط والأحكام
-
+{{ $t('Terms and conditions') }}
         </NuxtLink>
         <NuxtLink 
           :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
                    { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" 
           to="/yourNurse"
         >
-          اختر ممرضك
-        </NuxtLink>
+        {{ $t('Choose your nurse') }}
+      </NuxtLink>
         <NuxtLink 
           class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
           to="/contact" 
           active-class="bg-cyan-700 text-yellow-400" 
           exact-active-class="bg-cyan-700 text-yellow-400"
         >
-          تواصل معنا
+{{$t('Contact us')}}
         </NuxtLink>
 
         <!-- Dropdown للحساب الجديد -->
@@ -52,8 +51,8 @@
             :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
                     { 'bg-cyan-700 text-yellow-400': isSignupSectionActive }]"
           >
-            تسجيل حساب جديد
-          </button>
+          {{ $t('New account') }}
+        </button>
           <div v-if="isDropdownOpen" class="absolute bg-cyan-700 p-4 gap-2 flex flex-col  shadow-lg rounded mt-2 w-48 right-0 z-10">
             <NuxtLink 
               class="hover:text-yellow-400 delayed"
@@ -70,8 +69,11 @@
           </div>
         </div>
       </div>
+      <div class="flex items-center ">
+        <LanguageSwitcher />
 
       <DarkModeToggle />
+      </div>
     </div>
 
     <!-- Burger Menu Transition for Small Screens -->
@@ -84,7 +86,7 @@
             active-class="bg-cyan-700 text-yellow-400" 
             exact-active-class="bg-cyan-700 text-yellow-400"
           >
-            الرئيسية
+            {{ $t('Home') }}
           </NuxtLink>
           <NuxtLink 
             class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
@@ -92,14 +94,14 @@
             active-class="bg-cyan-700 text-yellow-400" 
             exact-active-class="bg-cyan-700 text-yellow-400"
           >
-          الشروط والأحكام
-        </NuxtLink>
+
+{{ $t('Terms and conditions') }}          </NuxtLink>
           <NuxtLink 
             :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
                      { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" 
             to="/yourNurse"
           >
-            اختر ممرضك
+            {{ $t('Choose your nurse') }}
           </NuxtLink>
           <NuxtLink 
             class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
@@ -107,7 +109,8 @@
             active-class="bg-cyan-700 text-yellow-400" 
             exact-active-class="bg-cyan-700 text-yellow-400"
           >
-            تواصل معنا
+          {{$t('Contact us')}}
+
           </NuxtLink>
 
           <!-- Dropdown للحساب الجديد في الشاشات الصغيرة -->
@@ -117,7 +120,7 @@
               :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
                       { 'bg-cyan-700 text-yellow-400': isSignupSectionActive }]"
             >
-              تسجيل حساب جديد
+              {{ $t('New account') }}
             </button>
             <div v-if="isDropdownOpen" class="bg-cyan-700 shadow-lg rounded mt-2 w-fit p-2 z-10 flex flex-col gap-2">
               <NuxtLink 
@@ -146,7 +149,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-
+const { locale } = useI18n();
 const loading = ref(true);
 const router = useRouter();
 

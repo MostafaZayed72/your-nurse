@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     }
   },
   modules: [
+    '@nuxtjs/i18n',
     '@nuxt/fonts',
     '@vueuse/nuxt',
     '@nuxtjs/tailwindcss',
@@ -21,7 +22,29 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/supabase'
   ],
+  i18n: {
+    lazy: true,
+    langDir: "locales",
+    strategy:"no_prefix",
+    locales: [
+      {
+        code: 'en-US',
+        iso: 'en-US',
+        name: 'English',
+        file: "en-US.json",
+        dir: 'ltr'
+      },
+      {
+        code: 'ar-AR',
+        iso: 'ar-AR',
+        name: 'Arabic',
+        file: "ar-AR.json",
+        dir: 'rtl'
+      },
+    ],
+    defaultLocale: 'ar-AR',
 
+  },
   primevue: {
     options: {
         theme: {
