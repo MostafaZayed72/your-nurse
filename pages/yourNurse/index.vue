@@ -24,22 +24,23 @@
 
             <!-- Column for Nurse -->
             <Column class="text-center Column" header="الممرض" filterField="user.firstName"
-                :showFilterMatchModes="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
-                <template #body="{ data }">
-                    <div class="flex items-center gap-2">
-                        <RouterLink :to="`/yourNurse/${data.user.userId}`">
-                            <img class="w-20 h-20" :alt="data.user.firstName" :src="`${data.personalImage}`"
-                                style="border-radius: 50%;" />
-                        </RouterLink>
-                        <RouterLink :to="`/yourNurse/${data.user.userId}`">
-                            <span>{{ data.user.firstName }} {{ data.user.lastName }}</span>
-                        </RouterLink>
-                    </div>
-                </template>
-                <template #filter="{ filterModel }">
-                    <InputText v-model="filterModel.value" type="text" placeholder="البحث بالممرض" />
-                </template>
-            </Column>
+    :showFilterMatchModes="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
+    <template #body="{ data }">
+        <div class="flex flex-col items-center gap-2 justify-center">
+            <RouterLink :to="`/yourNurse/${data.nurseId}`">
+                <img class="w-20 h-20" :alt="data.user.firstName" :src="`${data.personalImage}`"
+                    style="border-radius: 50%;" />
+            </RouterLink>
+            <RouterLink :to="`/yourNurse/${data.nurseId}`">
+                <span>{{ data.user.firstName }} {{ data.user.lastName }}</span>
+            </RouterLink>
+        </div>
+    </template>
+    <template #filter="{ filterModel }">
+        <InputText v-model="filterModel.value" type="text" placeholder="البحث بالممرض" />
+    </template>
+</Column>
+
 
             <!-- Column for Regions -->
             <Column class="text-center Column" header="المنطقة" filterField="regionsString" style="min-width: 12rem">
@@ -70,7 +71,7 @@
             <Column class="text-center" header="التقييم" style="min-width: 10rem">
                 <template #body="{ data }">
                     <div>
-                        <v-rating style="direction: ltr;" v-model="data.rating" half-increments :length="5" color="blue"
+                        <v-rating style="direction: ltr;" v-model="data.rating" half-increments :length="5" color="yellow"
                             readonly class="custom-rating" />
                     </div>
                 </template>
@@ -124,7 +125,7 @@ const clearFilter = () => {
 };
 </script>
 
-<style scoped>
+<style >
 .dark .p-datatable-header {
     background-color: #5c5858 !important;
 }
@@ -156,4 +157,12 @@ const clearFilter = () => {
 .region-item {
     display: block; /* يجعل كل منطقة تظهر في سطر منفصل */
 }
+
+.p-datatable-column-header-content {
+    display: block !important;
+    justify-content: center ;
+    
+
+}
+
 </style>
