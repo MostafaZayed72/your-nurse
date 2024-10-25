@@ -17,14 +17,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(10, 91, 138, 0.247);
   /* خلفية شفافة */
   z-index: 9999;
 }
 
-.dark .loader {
-  background-color: black
-}
+
 
 .spinner {
   width: 120px;

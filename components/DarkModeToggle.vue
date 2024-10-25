@@ -5,7 +5,7 @@
         class="p-2 rounded focus:outline-none"
       
       >
-        <span v-if="isDarkMode">🌞</span>
+       <Icon v-if="isDarkMode" name="line-md:sun-rising-filled-loop" class="text-2xl mt-1 text-yellow-400"/>
         <span v-else>🌙</span>
       </button>
     </div>

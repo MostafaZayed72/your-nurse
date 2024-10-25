@@ -1,47 +1,69 @@
 <template>
     <div class="nurse-details p-4">
       <!-- Card لعرض المعلومات العامة -->
-      <Card class="mb-4 pa-4 Card mx-auto">
-        <template #header>
-          <div class="flex align-items-center gap-2">
-            <img :src="nurse.image" alt="عمرو ناصر" class="w-20 h-20 rounded-full" />
+      <div >
+        
+          <div class="flex flex-col align-items-center gap-2 items-center justify-center">
+           
+
+            <img :src="nurse.image" alt="عمرو ناصر" class="rounded-full w-80 h-80" />
+           
             <div>
-              <h2 class="text-2xl font-bold">{{ nurse.name }}</h2>
-              <Tag value="الممرض" severity="info" class="mt-1" />
+              <h2 class="text-5xl font-bold text-gray-600 dark:text-gray-200">{{ nurse.name }}</h2>
+              
             </div>
-          </div>
-        </template>
-
-        <template #content>
-          <div class="flex flex-col md:flex-row mt-2 md:justify-between items-center gap-6">
-            <div class="flex gap-2">
-              <Icon name="logos:whatsapp-icon" class="text-3xl cursor-pointer"  />
-              <Icon name="material-symbols:phone-enabled" class="text-3xl cursor-pointer" color="blue"  />
-            </div>
-
-            <!-- تقييم النجوم باستخدام Vuetify -->
             <div class="flex flex-col md:flex-row items-center gap-4" style="direction: ltr;">
               <v-rating
                 v-model="rating"
                 halfIncrements
                 :length="5"
-                color="blue"
+                color="yellow"
                 readonly
                 
 
               />
-              <h1>التقييم : 4.5</h1>
+             
             </div>
+            <div class="flex flex-col md:flex-row mt-2 md:justify-between items-center gap-6">
+            <div class="flex flex-col gap-2" >
+              <div class="flex items-center gap-2">
+                <Icon name="ic:baseline-location-on" class="text-3xl cursor-pointer"  />
+                <h1 class="text-xl font-bold">الإسكندرية، محرم بك</h1>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="logos:whatsapp-icon" class="text-3xl cursor-pointer"  />
+                <h1 class="text-xl font-bold">0114455776</h1>
+              </div>
+              <div class="flex items-center gap-2">
+                <Icon name="material-symbols:phone-enabled" class="text-3xl cursor-pointer" color="blue"  />
+                <h1 class="text-xl font-bold">0112255887</h1>
+              </div>
+             
+            </div>
+
+           
           </div>
-        </template>
-      </Card>
+        
+          <div class="my-6 w-[80%]" style="border-bottom: 1px solid #07b5d7;"></div>
+       
+          
+
+            <!-- تقييم النجوم باستخدام Vuetify -->
+            
+          </div>
+       
+      </div>
 
       <!-- DataTable لعرض التفاصيل -->
-      <DataTable :value="services" responsiveLayout="scroll" class="shadow-2">
+      <DataTable :value="services" responsiveLayout="scroll" class="shadow-2 font-bold">
         <Column class="text-start" field="service" header="الخدمة" />
         <Column class="text-start" field="description" header="الوصف" />
         <Column class="text-start" field="price" header="السعر" />
       </DataTable>
+
+      <h1 class="text-center text-3xl font-bol bg-cyan-500 rounded px-4 py-2 w-[30%] mx-auto my-6 cursor-pointer hover:bg-cyan-700 delayed text-white">
+        احجز الآن
+      </h1>
     </div>
 </template>
 

@@ -55,13 +55,13 @@
         </button>
           <div v-if="isDropdownOpen" class="absolute bg-cyan-700 p-4 gap-2 flex flex-col  shadow-lg rounded mt-2 w-48 right-0 z-10">
             <NuxtLink 
-              class="hover:text-yellow-400 delayed"
+              class="hover:text-yellow-400 delayed text-white"
               to="/nurses/signup"
             >
               سجل كممرض
             </NuxtLink>
             <NuxtLink 
-              class="hover:text-yellow-400 delayed"
+              class="hover:text-yellow-400 delayed text-white"
               to="/users/signup"
             >
               سجل كمستخدم عادي
