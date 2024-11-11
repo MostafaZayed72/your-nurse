@@ -62,7 +62,7 @@
   const slides = ref([
     {
       id: 1,
-      image: 'https://scontent.fcai19-8.fna.fbcdn.net/v/t39.30808-6/462537619_122110091732547089_7600453508252705657_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHOTxQ0URpjLw_YmnJMJ5AKHuYqSZ9XaSQe5ipJn1dpJNOkWO0sdRfzE0TNdAbEjAn4x_Q7Nu1BJIIgrxtjVJJm&_nc_ohc=aeNAbLunUQQQ7kNvgEHFv5F&_nc_ht=scontent.fcai19-8.fna&_nc_gid=A4Rv6rvMC4SUrJ7yF0hSsPE&oh=00_AYD3E4zstNb74rEEKASVoP6JUplIPplJt1dHkxNHj3PGOw&oe=670B3A39',
+      image: 'https://scontent.fcai19-8.fna.fbcdn.net/v/t39.30808-6/462537619_122110091732547089_7600453508252705657_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHOTxQ0URpjLw_YmnJMJ5AKHuYqSZ9XaSQe5ipJn1dpJNOkWO0sdRfzE0TNdAbEjAn4x_Q7Nu1BJIIgrxtjVJJm&_nc_ohc=S49pCg10lREQ7kNvgHdzbh1&_nc_zt=23&_nc_ht=scontent.fcai19-8.fna&_nc_gid=AA0x3zqJx_sesG6NTX4idoO&oh=00_AYDa_R_IcleCNXs7Bsj1oUe8HbW0Ihu3vblm9R17SmCYHQ&oe=6737D4F9',
     },
     {
       id: 2,

@@ -26,13 +26,14 @@
                 <input type="file" @change="handleProfileImageChange" accept="image/*" class="w-full py-2" />
                 <label class="block">{{ $t('صورة مزاولة المهنة') }}</label>
                 <input type="file" @change="handleLicenseImageChange" accept="image/*" class="w-full py-2" />
-                <!-- <InputText v-model="about" :placeholder="$t('نبذة عن الممرض')" class="w-full" /> -->
                 <Button :label="$t('تسجيل')" type="submit" class="w-full bg-blue-darken-4" :disabled="loading" />
             </form>
 
             <Toast class="pl-16 pl-md-0" style="direction: rtl" />
 
             <Loader v-if="loading" />
+
+
 
             <Dialog class="text-start" v-model:visible="isDialogVisible" header="نجاح التسجيل" modal>
                 <p>تم التسجيل بنجاح! سيتم إرسال إيميل تأكيد إليك خلال 48 ساعة.</p>
@@ -54,12 +55,14 @@ import axios from 'axios'
 import { useToast } from 'primevue/usetoast'
 import { useRouter } from 'vue-router'
 
+// إعداد المتغيرات
 const router = useRouter()
 const profileImage = ref(null)
 const licenseImage = ref(null)
 const loading = ref(false)
-const isDialogVisible = ref(false)
+const isDialogVisible = ref(false) // متغير للتحكم في ظهور الديالوج
 
+// دالة لتحميل الصورة الشخصية
 const handleProfileImageChange = (event) => {
     const file = event.target.files[0]
     if (file) {
@@ -67,6 +70,7 @@ const handleProfileImageChange = (event) => {
     }
 }
 
+// دالة لتحميل صورة مزاولة المهنة
 const handleLicenseImageChange = (event) => {
     const file = event.target.files[0]
     if (file) {
@@ -74,8 +78,10 @@ const handleLicenseImageChange = (event) => {
     }
 }
 
+// إعداد التوست
 const toast = useToast()
 
+// الحقول المطلوبة
 const firstName = ref('')
 const lastName = ref('')
 const gender = ref(null)
@@ -85,13 +91,14 @@ const birthday = ref('')
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
-// const about = ref('')
 
+// قائمة الجنس
 const genders = [
     { label: 'ذكر', value: 1 },
     { label: 'أنثى', value: 2 }
 ]
 
+// رفع الصورة إلى Cloudinary
 const uploadImageToCloudinary = async (file) => {
     const url = 'https://api.cloudinary.com/v1_1/dzswjhtds/image/upload'
     const formData = new FormData()
@@ -108,18 +115,19 @@ const uploadImageToCloudinary = async (file) => {
     }
 }
 
+// دالة لتسجيل الممرض
 const registerNurse = async () => {
-    // if (!profileImage.value || !licenseImage.value) {
-    //     toast.add({ severity: 'warn', summary: 'تحذير', detail: 'يرجى رفع صورة شخصية وصورة مزاولة المهنة' })
-    //     return
-    // }
+    if (!profileImage.value || !licenseImage.value) {
+        toast.add({ severity: 'warn', summary: 'تحذير', detail: 'يرجى رفع صورة شخصية وصورة مزاولة المهنة' })
+        return
+    }
 
     if (password.value !== confirmPassword.value) {
         toast.add({ severity: 'error', summary: 'خطأ', detail: 'كلمة المرور وتأكيد كلمة المرور غير متطابقتين' })
         return
     }
 
-    loading.value = true
+    loading.value = true // تفعيل حالة التحميل
 
     const profileImageUrl = await uploadImageToCloudinary(profileImage.value)
     const licenseImageUrl = await uploadImageToCloudinary(licenseImage.value)
@@ -130,6 +138,7 @@ const registerNurse = async () => {
         return
     }
 
+    // إعداد بيانات الممرض
     const nurseData = {
         firstName: firstName.value,
         lastName: lastName.value,
@@ -139,33 +148,40 @@ const registerNurse = async () => {
         birthday: birthday.value,
         email: email.value,
         password: password.value,
-        confirmPassword: confirmPassword.value,
-        personalImage: profileImageUrl,
-        professionImage: licenseImageUrl,
-        // about: about.value
+        confirmPassword: confirmPassword.value
     }
 
+    // إرسال البيانات إلى الـ API لتسجيل المستخدم
     try {
-        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/Nurses/RegisterNurse`, nurseData)
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/Users/register`, nurseData)
+
+        const nurseAdditionalData = {
+            email: nurseData.email,
+            personalImage: profileImageUrl,
+            professionImage: licenseImageUrl
+        }
+
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/Nurses/AddNurse`, nurseAdditionalData)
 
         toast.add({ severity: 'success', summary: 'نجاح', detail: 'تم تسجيل الممرض بنجاح!' })
-        isDialogVisible.value = true
+        isDialogVisible.value = true // إظهار الديالوج
         resetForm()
 
     } catch (error) {
-        const errorMessage = error.response?.data?.msg || 'حدث خطأ غير متوقع';
-    toast.add({ severity: 'error', summary: 'خطأ', detail: errorMessage });
-    console.error(error);
+        toast.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء التسجيل' })
+        console.error(error)
     } finally {
-        loading.value = false
+        loading.value = false // إلغاء حالة التحميل
     }
 }
 
+// دالة للتحويل إلى الصفحة الرئيسية
 const goToHome = () => {
-    isDialogVisible.value = false
-    router.push('/')
+    isDialogVisible.value = false // إخفاء الديالوج
+    router.push('/') // الانتقال إلى الصفحة الرئيسية
 }
 
+// إعادة تعيين الحقول
 const resetForm = () => {
     firstName.value = ''
     lastName.value = ''
@@ -178,7 +194,6 @@ const resetForm = () => {
     confirmPassword.value = ''
     profileImage.value = null
     licenseImage.value = null
-    // about.value = ''
 }
 </script>
 
@@ -187,5 +202,37 @@ input {
     color: black !important;
 }
 
-/* Add any other relevant styles here */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.logo-spinner {
+
+    animation: spin 1s linear infinite;
+    /* إضافة حركة دوران */
+}
+
+.p-select-option {
+    justify-content: center !important;
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 </style>

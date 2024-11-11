@@ -2,77 +2,65 @@
   <div :class="{ 'dark': isDarkMode }" :style="{ direction: locale === 'ar-AR' ? 'rtl' : 'ltr' }">
     <div class="mb-0 px-4 bg-cyan-500 flex justify-between items-center py-2 shadow-xl sticky top-0 z-10 ">
       <div class="flex items-center gap-4">
-        <Icon
-          @click="toggleSidebar"
-          name="iconamoon:menu-burger-horizontal"
-          class="md:hidden text-xl text-white cursor-pointer"
-        />
-        <img src="/public/imgs/logo.jpeg" class="w-16 h-16 cursor-pointer" alt="" style="border-radius: 50%;" @click="navigateTo('/')">
+        <Icon @click="toggleSidebar" name="iconamoon:menu-burger-horizontal"
+          class="md:hidden text-xl text-white cursor-pointer" />
+        <img src="/public/imgs/logo.jpeg" class="w-16 h-16 cursor-pointer" alt="" style="border-radius: 50%;"
+          @click="navigateTo('/')">
       </div>
 
       <!-- الروابط في الشاشات الكبيرة -->
       <div class="links md:flex items-center gap-4 hidden">
-        <NuxtLink 
-          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-          to="/" 
-          active-class="bg-cyan-700 text-yellow-400" 
-          exact-active-class="bg-cyan-700 text-yellow-400"
-        >
+        <NuxtLink
+          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+          to="/" active-class="bg-cyan-700 text-yellow-400" exact-active-class="bg-cyan-700 text-yellow-400">
           {{ $t('Home') }}
         </NuxtLink>
-        <NuxtLink 
-          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-          to="/Terms_and_Conditions" 
-          active-class="bg-cyan-700 text-yellow-400" 
-          exact-active-class="bg-cyan-700 text-yellow-400"
-        >
-{{ $t('Terms and conditions') }}
+        <NuxtLink
+          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+          to="/Terms_and_Conditions" active-class="bg-cyan-700 text-yellow-400"
+          exact-active-class="bg-cyan-700 text-yellow-400">
+          {{ $t('Terms and conditions') }}
         </NuxtLink>
-        <NuxtLink 
-          :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
-                   { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" 
-          to="/yourNurse"
-        >
-        {{ $t('Choose your nurse') }}
-      </NuxtLink>
-        <NuxtLink 
-          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-          to="/contact" 
-          active-class="bg-cyan-700 text-yellow-400" 
-          exact-active-class="bg-cyan-700 text-yellow-400"
-        >
-{{$t('Contact us')}}
+        <NuxtLink :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
+          { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" to="/yourNurse">
+          {{ $t('Choose your nurse') }}
         </NuxtLink>
+        <NuxtLink
+          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+          to="/contact" active-class="bg-cyan-700 text-yellow-400" exact-active-class="bg-cyan-700 text-yellow-400">
+          {{ $t('Contact us') }}
+        </NuxtLink>
+        <NuxtLink v-if="!token"
+          class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+          to="/login" active-class="bg-cyan-700 text-yellow-400" exact-active-class="bg-cyan-700 text-yellow-400">
+          {{ $t('Login') }}
+        </NuxtLink>
+        
 
         <!-- Dropdown للحساب الجديد -->
-        <div class="relative">
-          <button 
-            @click="toggleDropdown" 
-            :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
-                    { 'bg-cyan-700 text-yellow-400': isSignupSectionActive }]"
-          >
-          {{ $t('New account') }}
-        </button>
-          <div v-if="isDropdownOpen" class="absolute bg-cyan-700 p-4 gap-2 flex flex-col  shadow-lg rounded mt-2 w-48 right-0 z-10">
-            <NuxtLink 
-              class="hover:text-yellow-400 delayed text-white"
-              to="/nurses/signup"
-            >
+        <div class="relative" v-if="!token">
+          <h1 @click="toggleDropdown" :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
+            { 'bg-cyan-700 text-yellow-400': isSignupSectionActive }]">
+            {{ $t('New account') }}
+          </h1>
+          <div v-if="isDropdownOpen"
+            class="absolute text-white bg-cyan-700 p-4 gap-2 flex flex-col  shadow-lg rounded mt-2 w-48 right-0 z-10">
+            <NuxtLink class="hover:bg-cyan-700 hover:text-yellow-400 delayed " to="/nurses/signup">
               سجل كممرض
             </NuxtLink>
-            <NuxtLink 
-              class="hover:text-yellow-400 delayed text-white"
-              to="/users/signup"
-            >
+            <NuxtLink class="hover:bg-cyan-700 hover:text-yellow-400 delayed " to="/users/signup">
               سجل كمستخدم عادي
             </NuxtLink>
+
           </div>
         </div>
       </div>
-      <div class="flex items-center ">
+      <div class="flex items-center gap-2">
+        
+        <Icon class="text-3xl cursor-pointer text-cyan-700 hidden md:flex" name="ic:twotone-log-out" v-if="token" @click="logout" />
         <LanguageSwitcher />
 
-      <DarkModeToggle />
+        <DarkModeToggle />
       </div>
     </div>
 
@@ -80,65 +68,60 @@
     <transition name="slide">
       <div v-if="isSidebarOpen" class="bg-cyan-500 md:hidden border-t-2 border-cyan-600">
         <div class="flex flex-col p-4">
-          <NuxtLink 
-            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-            to="/" 
-            active-class="bg-cyan-700 text-yellow-400" 
-            exact-active-class="bg-cyan-700 text-yellow-400"
-          >
+          <NuxtLink
+            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            to="/" active-class="bg-cyan-700 text-yellow-400" exact-active-class="bg-cyan-700 text-yellow-400">
             {{ $t('Home') }}
           </NuxtLink>
-          <NuxtLink 
-            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-            to="/Terms_and_Conditions" 
-            active-class="bg-cyan-700 text-yellow-400" 
-            exact-active-class="bg-cyan-700 text-yellow-400"
-          >
+          <NuxtLink
+            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            to="/Terms_and_Conditions" active-class="bg-cyan-700 text-yellow-400"
+            exact-active-class="bg-cyan-700 text-yellow-400">
 
-{{ $t('Terms and conditions') }}          </NuxtLink>
-          <NuxtLink 
-            :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
-                     { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" 
-            to="/yourNurse"
-          >
+            {{ $t('Terms and conditions') }} </NuxtLink>
+          <NuxtLink :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
+            { 'bg-cyan-700 text-yellow-400': isYourNurseActive }]" to="/yourNurse">
             {{ $t('Choose your nurse') }}
           </NuxtLink>
-          <NuxtLink 
-            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400" 
-            to="/contact" 
-            active-class="bg-cyan-700 text-yellow-400" 
-            exact-active-class="bg-cyan-700 text-yellow-400"
-          >
-          {{$t('Contact us')}}
+          <NuxtLink
+            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            to="/contact" active-class="bg-cyan-700 text-yellow-400" exact-active-class="bg-cyan-700 text-yellow-400">
+            {{ $t('Contact us') }}
 
           </NuxtLink>
+          <NuxtLink v-if="!token"
+            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400"
+            to="/login" active-class="bg-cyan-700 text-yellow-400" exact-active-class="bg-cyan-700 text-yellow-400">
+            {{ $t('Login') }}
+          </NuxtLink>
+          <button v-if="token" @click="logout"
+            class="hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400">
+            {{ $t('Logout') }}
+          </button>
 
           <!-- Dropdown للحساب الجديد في الشاشات الصغيرة -->
-          <div class="relative">
-            <button 
-              @click="toggleDropdown" 
-              :class="['hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400', 
-                      { 'bg-cyan-700 text-yellow-400': isSignupSectionActive }]"
-            >
+          <div class="relative" v-if="!token">
+            <h1 @click="toggleDropdown" :class="[
+              'hover:bg-cyan-700 px-4 py-2 rounded-lg delayed cursor-pointer font-bold text-slate-50 hover:text-yellow-400',
+              { 'bg-cyan-700 text-yellow-400': isSignupSectionActive }
+            ]">
               {{ $t('New account') }}
-            </button>
-            <div v-if="isDropdownOpen" class="bg-cyan-700 shadow-lg rounded mt-2 w-fit p-2 z-10 flex flex-col gap-2">
-              <NuxtLink 
-                to="/nurses/signup"
-              >
+            </h1>
+            <div v-if="isDropdownOpen"
+              class="absolute text-white bg-cyan-700 p-4 gap-2 flex flex-col shadow-lg rounded mt-2 w-48 right-0 z-10">
+              <NuxtLink class="hover:bg-cyan-700 hover:text-yellow-400 delayed" to="/nurses/signup">
                 سجل كممرض
               </NuxtLink>
-              <NuxtLink 
-                to="/users/signup"
-              >
+              <NuxtLink class="hover:bg-cyan-700 hover:text-yellow-400 delayed" to="/users/signup">
                 سجل كمستخدم عادي
               </NuxtLink>
+
             </div>
           </div>
         </div>
       </div>
     </transition>
-    
+
     <Loader v-if="loading" />
     <main class="p-0">
       <slot />
@@ -147,11 +130,62 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useLocalStorage } from '@vueuse/core'; // استيراد useLocalStorage
+
 const { locale } = useI18n();
 const loading = ref(true);
 const router = useRouter();
+
+// استخدام useLocalStorage بدلاً من localStorage مباشرة
+const token = useLocalStorage('token', null); // "token" هو اسم المفتاح و "null" هو القيمة الافتراضية
+
+// دالة التحقق من التوكن
+const checkToken = () => {
+  if (!token.value) {
+    // إذا لم يكن هناك توكن في الـ localStorage، يتم تعيين القيمة الافتراضية
+    token.value = localStorage.getItem('token');
+  }
+};
+
+// تسجيل الخروج
+const logout = () => {
+  token.value = null;  // إزالة التوكن من useLocalStorage
+  router.push('/login'); // استخدم router.push بدلاً من navigateTo
+};
+
+// مراقبة التوكن وتحديث حالة token بناءً عليه
+watch(token, (newToken) => {
+  if (newToken) {
+    // إذا كان هناك توكن، يمكنك تنفيذ عمليات معينة
+    console.log("تم تسجيل الدخول");
+  } else {
+    // إذا لم يكن هناك توكن، تنفيذ عمليات أخرى مثل توجيه المستخدم إلى صفحة التسجيل
+    console.log("تم تسجيل الخروج");
+  }
+});
+
+// إضافة مستمع لحدث storage في متصفح
+const handleStorageChange = (event) => {
+  if (event.key === 'token') {
+    // عند تغيير قيمة التوكن في localStorage
+    token.value = event.newValue;
+  }
+};
+
+onMounted(() => {
+  checkToken();
+  loading.value = false;
+  
+  // الاستماع إلى تغييرات localStorage
+  window.addEventListener('storage', handleStorageChange);
+});
+
+onBeforeUnmount(() => {
+  // إزالة مستمع الحدث عند إلغاء تحميل الصفحة
+  window.removeEventListener('storage', handleStorageChange);
+});
 
 // التحكم في حالة الـ loading عند التنقل بين الصفحات
 router.beforeEach((to, from, next) => {
@@ -160,11 +194,6 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach(() => {
-  loading.value = false;
-});
-
-// عند تحميل الصفحة لأول مرة
-onMounted(() => {
   loading.value = false;
 });
 
@@ -181,13 +210,13 @@ const toggleDropdown = () => {
 
 // إغلاق القائمة عند النقر خارجها
 const closeDropdownOnClickOutside = (event) => {
-  const dropdown = document.querySelector('.relative'); // عنصر القائمة
-  if (dropdown && !dropdown.contains(event.target)) {
+  const dropdown = document.querySelector('.relative');
+  const toggleButton = event.target.closest('h1'); // عنصر النقر لفتح القائمة
+  if (dropdown && !dropdown.contains(event.target) && !toggleButton) {
     isDropdownOpen.value = false;
   }
 };
 
-// إضافة وإزالة مستمع للنقر عند تشغيل وإيقاف المكون
 onMounted(() => {
   document.addEventListener('click', closeDropdownOnClickOutside);
 });
@@ -210,22 +239,28 @@ const isSignupSectionActive = computed(() => {
 const isYourNurseActive = computed(() => route.path.startsWith('/yourNurse'));
 </script>
 
+
+
+
 <style scoped>
 body.dark {
   background-color: #1e1e1e;
   color: white;
 }
 
-.slide-enter-active, .slide-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.slide-enter, .slide-leave-to {
+.slide-enter,
+.slide-leave-to {
   opacity: 0;
   transform: translateX(-100%);
 }
 
-.slide-enter-to, .slide-leave {
+.slide-enter-to,
+.slide-leave {
   opacity: 1;
   transform: translateX(0);
 }
